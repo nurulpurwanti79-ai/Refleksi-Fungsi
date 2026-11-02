@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruang Matematika · Refleksi Fungsi</title>
+  <style>
+    :root{--ink:#182a45;--muted:#63738b;--blue:#425fe8;--pale:#f3f6ff;--line:#dce4f0;--green:#17845e;--red:#c34e58}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 4%,#e9edff 0,transparent 38%),#f7f9fc;color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    .wrap{width:min(1050px,100% - 32px);margin:28px auto 56px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{font-weight:800;letter-spacing:-.03em}.tag{border:1px solid #dce3f5;color:#4d5f90;background:white;padding:7px 12px;border-radius:99px;font-size:13px}
+    .hero{background:linear-gradient(125deg,#253c80,#596ce8);color:white;border-radius:26px;padding:clamp(24px,5vw,48px);box-shadow:0 18px 50px #32488a22;position:relative;overflow:hidden}.hero:after{content:"↗";position:absolute;right:7%;top:-35px;font-size:190px;font-weight:800;color:#ffffff0e;transform:rotate(18deg)}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800;color:#dbe2ff}.hero h1{font-size:clamp(31px,5vw,52px);line-height:1.06;letter-spacing:-.05em;margin:14px 0}.hero p{max-width:650px;color:#e1e7ff;margin:0;font-size:17px}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.85fr);gap:18px;margin-top:18px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 28px #24365b0a}.card h2{font-size:18px;margin:0 0 15px;letter-spacing:-.02em}.row{display:flex;gap:12px;align-items:end}.field{flex:1}label{display:block;font-weight:700;font-size:13px;margin-bottom:7px}input[type=text]{width:100%;border:1px solid #cbd6e6;border-radius:11px;padding:12px 13px;font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #425fe81a}button{border:0;border-radius:11px;padding:12px 16px;font:inherit;font-weight:750;cursor:pointer;transition:transform .12s,opacity .12s}button:hover{transform:translateY(-1px)}button:disabled{opacity:.5;cursor:default;transform:none}.primary{color:white;background:var(--blue);box-shadow:0 7px 16px #425fe833}.quiet{color:#34445c;background:#edf1f7}.question{display:none}.question.active{display:block}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:700}.progress{height:7px;border-radius:10px;background:#edf1f8;margin:12px 0 23px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#667bed,#29b99a);width:0;transition:width .3s}.prompt{font-size:20px;font-weight:780;letter-spacing:-.02em;margin:0 0 18px}.math{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f3f6ff;padding:12px 15px;border-radius:12px;font-size:22px;color:#253c80;display:inline-block;margin:0 0 18px}.answers{display:grid;gap:10px}.answer{border:1px solid var(--line);background:white;color:var(--ink);text-align:left;font-weight:650}.answer:hover{border-color:#7182ea;background:#f8f9ff}.answer.correct{border-color:#53b68d;background:#edfbf4;color:#116b4a}.answer.wrong{border-color:#df8e95;background:#fff2f2;color:#a33b45}.feedback{min-height:26px;margin:13px 0 0;font-weight:700}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}.nextrow{display:flex;justify-content:flex-end;margin-top:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{border:1px solid var(--line);background:#fbfcff;border-radius:14px;padding:14px}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700}.stat strong{font-size:25px;letter-spacing:-.04em}.tip{margin-top:14px;background:var(--pale);border-radius:14px;padding:14px;color:#425474;font-size:14px}.tip b{display:block;color:#273d79;margin-bottom:5px}.result{display:none;text-align:center}.result h2{font-size:28px}.bigscore{font-size:48px;letter-spacing:-.05em;color:var(--blue);font-weight:850}.status{font-weight:700;margin:4px 0 18px}.actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.note{color:var(--muted);font-size:12px;margin-top:12px}.saved{color:var(--green);font-weight:700;min-height:24px;margin-top:12px}.saved.err{color:var(--red)}.footer{text-align:center;color:#78869a;font-size:12px;margin-top:19px}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.row{align-items:stretch;flex-direction:column}.top{align-items:flex-start;flex-direction:column}.hero{border-radius:20px}.card{padding:18px}}
+    .learning{margin-top:18px}.learning[hidden],#simulation[hidden],#gameScreen[hidden],#lesson[hidden]{display:none!important}.steps{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 18px}.step,.stagepill{padding:7px 11px;border-radius:99px;background:#f0f3fa;color:#596980;font-size:13px;font-weight:750}.step.on,.stagepill{background:#e9edff;color:#4058d3}.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.lesson{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fcfdff}.lesson h3{margin:0 0 7px;font-size:15px}.lesson p{margin:0;color:var(--muted);font-size:14px}.formula{font:700 17px ui-monospace,Consolas,monospace;color:#344aaf;background:#f2f4ff;border-radius:10px;padding:10px;margin:10px 0}.simrow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(200px,.8fr);gap:14px;align-items:center}.graph{width:100%;height:auto;border:1px solid var(--line);border-radius:14px;background:#fff}.simcontrols{display:grid;gap:9px}.simcontrols button{text-align:left}.stagehead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.startline{display:flex;gap:12px;align-items:end;margin-top:18px}
+    @media(max-width:760px){.lesson-grid,.simrow{grid-template-columns:1fr}.startline{flex-direction:column;align-items:stretch}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><div class="brand">✳ Ruang Matematika</div><div class="tag">GAME BELAJAR · ALJABAR</div></div>
+  <section class="hero"><div class="eyebrow">Misi grafik · level 01</div><h1>Refleksi Fungsi</h1><p>Uji ketajamanmu membaca bayangan grafik. Kenali perubahan tanda, pilih refleksi yang tepat, dan kumpulkan poin!</p></section>
+  <section class="card learning" id="learnScreen">
+    <div class="steps"><span class="step on">1 · Materi</span><span class="step">2 · Simulasi</span><span class="step">3 · Game bertahap</span></div>
+    <div id="lesson"><h2>Kenali refleksi fungsi</h2><p style="color:var(--muted);margin-top:-7px">Pelajari perubahan koordinat dan aturan persamaan sebelum mencoba simulasi.</p><div class="lesson-grid">
+      <article class="lesson"><h3>Terhadap sumbu-x</h3><p>Koordinat x tetap, y berubah tanda.</p><div class="formula">(x,y) → (x,−y)<br>y = −f(x)</div></article>
+      <article class="lesson"><h3>Terhadap sumbu-y</h3><p>Koordinat y tetap, x berubah tanda.</p><div class="formula">(x,y) → (−x,y)<br>y = f(−x)</div></article>
+      <article class="lesson"><h3>Terhadap garis y = x</h3><p>Koordinat x dan y bertukar posisi.</p><div class="formula">(x,y) → (y,x)</div><p>Domain dan range bertukar.</p></article>
+    </div><div class="nextrow"><button class="primary" id="toSim">Lanjut ke simulasi →</button></div></div>
+    <div id="simulation" hidden><h2>Simulasi pencerminan</h2><p style="color:var(--muted)">Grafik biru adalah fungsi awal; grafik hijau adalah bayangannya.</p><div class="simrow"><svg class="graph" id="graph" viewBox="0 0 440 300" role="img" aria-label="Grafik dan bayangan"></svg><div class="simcontrols"><button class="quiet" data-reflect="x">Cerminkan pada sumbu-x</button><button class="quiet" data-reflect="y">Cerminkan pada sumbu-y</button><button class="quiet" data-reflect="xy">Cerminkan pada y = x</button><div class="tip" id="simExplain">Pilih garis cermin untuk melihat perubahan grafik.</div></div></div><div class="startline"><div class="field"><label for="player">Nama pemain untuk hasil skor</label><input id="player" type="text" maxlength="80" placeholder="Contoh: Aulia"></div><button class="primary" id="toGame">Mulai stage 1 →</button></div></div>
+  </section>
+  <section class="card learning" id="gameScreen" hidden><div id="quiz"><div class="stagehead"><h2>Tantangan refleksi</h2><span class="stagepill" id="stageLabel">STAGE 1 · DASAR</span></div><div class="qmeta"><span id="qcount">Soal 1 dari 6</span><span>★ <span id="scoreInline">0</span> poin</span></div><div class="progress"><div class="bar" id="bar"></div></div><p class="prompt" id="prompt"></p><div class="math" id="math"></div><div class="answers" id="answers"></div><p class="feedback" id="feedback" aria-live="polite"></p><div class="nextrow"><button class="primary" id="next" disabled>Lanjut →</button></div></div><div class="result" id="result"><div class="eyebrow" style="color:#7180dc">MISI SELESAI</div><h2>Kerja bagus!</h2><div class="bigscore"><span id="finalScore">0</span><span style="font-size:20px;color:var(--muted)"> / 120</span></div><p class="status" id="resultText"></p><div class="actions"><button class="primary" id="again">Ulangi game</button><button class="quiet" id="retry" style="display:none">Kirim ulang skor</button><button class="quiet" id="openSheet" style="display:none">Lihat spreadsheet ↗</button></div><div class="saved" id="saved" aria-live="polite"></div><div class="note">Skor dikirim ke spreadsheet setelah semua stage selesai.</div></div></section>
+  <div class="footer">Pelajari konsepnya, amati simulasinya, lalu taklukkan setiap stage.</div>
+</main>
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwW58nWwN8P8vASPft0BjQFCAwu50vw-ursX8Opyz8Lj6f4nN85Y_NAtJ0KEkJEWf6mHA/exec';
+const questions=[
+ {stage:0,p:'Grafik y = f(x) dicerminkan terhadap sumbu-x. Persamaan bayangannya adalah…',m:'y = f(x)',a:['y = −f(x)','y = f(−x)','y = −f(−x)','y = f(x)+1'],c:0,e:'Refleksi sumbu-x mengubah nilai y menjadi lawannya: y → −y.'},
+ {stage:0,p:'Grafik y = f(x) dicerminkan terhadap sumbu-y. Persamaan bayangannya adalah…',m:'y = f(x)',a:['y = −f(x)','y = f(−x)','y = −f(−x)','y = f(x−1)'],c:1,e:'Refleksi sumbu-y mengubah x menjadi −x, sehingga persamaannya y = f(−x).'},
+ {stage:1,p:'Grafik y = x² + 2 dicerminkan terhadap sumbu-x. Hasilnya…',m:'y = x² + 2',a:['y = −x² + 2','y = x² − 2','y = −x² − 2','y = (−x)² + 2'],c:2,e:'Seluruh fungsi dikalikan −1: −(x² + 2) = −x² − 2.'},
+ {stage:1,p:'Grafik y = 2x + 1 dicerminkan terhadap sumbu-y. Hasilnya…',m:'y = 2x + 1',a:['y = 2x − 1','y = −2x + 1','y = −2x − 1','y = 2x + 1'],c:1,e:'Ganti setiap x dengan −x: f(−x) = 2(−x)+1 = −2x+1.'},
+ {stage:2,p:'Titik (3, −2) dicerminkan terhadap garis y = x. Koordinat bayangannya…',m:'(x, y) → (y, x)',a:['(−3, −2)','(3, 2)','(−2, 3)','(2, −3)'],c:2,e:'Refleksi terhadap y = x menukar posisi x dan y, jadi (3, −2) menjadi (−2, 3).'},
+ {stage:2,p:'Titik (−4, 1) dicerminkan terhadap sumbu-y. Koordinat bayangannya…',m:'(x, y) → (−x, y)',a:['(4, 1)','(−4, −1)','(1, −4)','(4, −1)'],c:0,e:'Refleksi sumbu-y mengubah tanda x saja: (−4, 1) menjadi (4, 1).'}
+];
+let index=0,score=0,locked=false,sheetUrl='',playerName='',sending=false;
+const $=id=>document.getElementById(id);
+function showQuestion(){locked=false;const q=questions[index],stages=['STAGE 1 · DASAR','STAGE 2 · PERSAMAAN','STAGE 3 · KOORDINAT'];$('stageLabel').textContent=stages[q.stage];$('qcount').textContent=`Stage ${q.stage+1} · Soal ${index+1} dari ${questions.length}`;$('scoreInline').textContent=score;$('bar').style.width=`${index/questions.length*100}%`;$('prompt').textContent=q.p;$('math').textContent=q.m;$('feedback').textContent='';$('feedback').className='feedback';$('next').disabled=true;$('next').textContent=index===questions.length-1?'Lihat hasil →':questions[index+1].stage!==q.stage?'Lanjut ke stage berikutnya →':'Lanjut →';$('answers').innerHTML='';q.a.forEach((text,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=`${String.fromCharCode(65+i)}.  ${text}`;b.onclick=()=>choose(i);$('answers').appendChild(b)})}
+function choose(i){if(locked)return;locked=true;const q=questions[index],buttons=[...$('answers').children];buttons.forEach((b,n)=>{b.disabled=true;if(n===q.c)b.classList.add('correct')});if(i===q.c){score+=20;$('feedback').textContent='Tepat! '+q.e;$('feedback').classList.add('good')}else{buttons[i].classList.add('wrong');$('feedback').textContent='Belum tepat. '+q.e;$('feedback').classList.add('bad')}$('scoreInline').textContent=score;$('next').disabled=false}
+
+function saveScore(){
+  if(sending)return;sending=true;
+  const s=$('saved');s.className='saved';s.textContent='Menyimpan skor ke Google Sheets…';$('retry').style.display='none';
+  fetch(SCRIPT_URL,{
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify({nama:playerName,skor:score,total:120})
+  })
+  .then(r=>r.json())
+  .then(r=>{
+    if(!r.ok)throw new Error(r.error||'Server menolak data');
+    sheetUrl=r.spreadsheetUrl||'';
+    s.textContent='Skor berhasil disimpan ke Google Sheets.';
+    if(sheetUrl)$('openSheet').style.display='inline-block';
+  })
+  .catch(err=>{
+    s.className='saved err';
+    s.textContent='Skor belum tersimpan: '+(err&&err.message?err.message:'periksa koneksi lalu coba lagi.');
+    $('retry').style.display='inline-block';
+  })
+  .finally(()=>{sending=false});
+}
+function finish(){
+  $('quiz').style.display='none';$('result').style.display='block';
+  $('finalScore').textContent=score;
+  $('resultText').textContent=score===120?'Sempurna! Kamu menaklukkan semua stage.':score>=80?'Bagus! Terus latih aturan tanda dan koordinat.':'Terus berlatih—materi dan simulasi bisa kamu buka lagi.';
+  saveScore();
+}
+$('retry').onclick=saveScore;
+$('toSim').onclick=()=>{$('lesson').hidden=true;$('simulation').hidden=false;document.querySelectorAll('.steps .step')[0].classList.remove('on');document.querySelectorAll('.steps .step')[1].classList.add('on');drawGraph('x')};
+$('toGame').onclick=()=>{playerName=$('player').value.trim();if(!playerName){$('player').focus();$('player').setCustomValidity('Masukkan nama pemain terlebih dahulu.');$('player').reportValidity();$('player').setCustomValidity('');return;}$('learnScreen').hidden=true;$('gameScreen').hidden=false;document.querySelectorAll('.steps .step')[1].classList.remove('on');document.querySelectorAll('.steps .step')[2].classList.add('on');showQuestion()};
+$('next').onclick=()=>{index++;if(index===questions.length)finish();else showQuestion()};
+$('again').onclick=()=>{index=0;score=0;$('result').style.display='none';$('openSheet').style.display='none';$('retry').style.display='none';$('saved').textContent='';$('quiz').style.display='block';$('gameScreen').hidden=true;$('learnScreen').hidden=false;$('simulation').hidden=true;$('lesson').hidden=false;document.querySelectorAll('.steps .step').forEach((s,i)=>s.classList.toggle('on',i===0))};
+$('openSheet').onclick=()=>{if(sheetUrl)window.open(sheetUrl,'_blank')};
+function drawGraph(axis){const svg=$('graph'),cx=220,cy=150,s=32,P=(x,y)=>[cx+x*s,cy-y*s];let z='';for(let i=-5;i<=5;i++){let[a,b]=P(i,-4),[c,d]=P(i,4),[e,f]=P(-6,i),[g,h]=P(6,i);z+=`<path d="M${a} ${b}L${c} ${d}M${e} ${f}L${g} ${h}" stroke="#edf0f5"/>`}let[a,b]=P(-6,0),[c,d]=P(6,0),[e,f]=P(0,-4),[g,h]=P(0,4);z+=`<path d="M${a} ${b}L${c} ${d}M${e} ${f}L${g} ${h}" stroke="#75839a" stroke-width="2"/>`;if(axis==='xy'){[a,b]=P(-4,-4);[c,d]=P(4,4);z+=`<path d="M${a} ${b}L${c} ${d}" stroke="#f0ae52" stroke-dasharray="5 5"/>`}else if(axis==='x')z+=`<path d="M${a} ${b}L${c} ${d}" stroke="#f0ae52" stroke-width="2" stroke-dasharray="5 5"/>`;else z+=`<path d="M${e} ${f}L${g} ${h}" stroke="#f0ae52" stroke-width="2" stroke-dasharray="5 5"/>`;const curve=(fn,color)=>{let d='';for(let x=-5.5;x<=5.5;x+=.1){let[u,v]=P(x,fn(x));d+=(x===-5.5?'M':'L')+u+' '+v+' '}return `<path d="${d}" fill="none" stroke="${color}" stroke-width="3"/>`};z+=curve(x=>.5*x+1,'#5368e8');if(axis==='x')z+=curve(x=>-.5*x-1,'#199b73');if(axis==='y')z+=curve(x=>-.5*x+1,'#199b73');if(axis==='xy'){let d='';for(let y=-2.5;y<=3.5;y+=.08){let[u,v]=P(y,2*(y-1));d+=(y===-2.5?'M':'L')+u+' '+v+' '}z+=`<path d="${d}" fill="none" stroke="#199b73" stroke-width="3"/>`}z+='<text x="14" y="22" fill="#5368e8" font-size="12">Awal</text><text x="66" y="22" fill="#199b73" font-size="12">Bayangan</text>';svg.innerHTML=z;$('simExplain').innerHTML='<b>Aturan bayangan</b>'+({x:'Sumbu-x: g(x) = −f(x) = −0,5x − 1.',y:'Sumbu-y: g(x) = f(−x) = −0,5x + 1.',xy:'Garis y = x: koordinat bertukar; persamaan bayangan x = 0,5y + 1.'}[axis])}
+document.querySelectorAll('[data-reflect]').forEach(b=>b.onclick=()=>drawGraph(b.dataset.reflect));
+</script>
+</body>
+</html>
